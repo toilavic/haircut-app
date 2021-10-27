@@ -11,7 +11,7 @@ In the project directory, you can run:
 `make install` to install the application
 # OR
 
-`make up-frontend` to run the front-end\ 
+`make up-frontend` to run the front-end\
 `make up-backend` to run the backend\
 `make logs` to see logs\
 `make into-frontend` to use docker exec\
