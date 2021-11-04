@@ -3,12 +3,13 @@ require("express-async-errors");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const middleware = require("./utils/middleware");
 const config = require("./utils/config");
 const logger = require("./utils/logger");
 
-// const itemsRouter = require("./controllers/items");
+const itemsRoute = require("./controllers/items");
 
 logger.info("connecting to", config.MONGODB_URI);
 
@@ -24,7 +25,7 @@ mongoose
     logger.error("error connection to MongoDB:", error.message);
   });
 
-
+app.use(express.json());
 app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
@@ -35,7 +36,7 @@ app.get("/", (req, res) => {
   res.send("Hello World API!");
 });
 
-// app.use("/api/items", itemsRouter);
+app.use("/items", itemsRoute);
 
 
 app.use(middleware.unknownEndpoint); // handles unkown endpoints

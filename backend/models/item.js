@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema({
-    _id : {
-        type: mongoose.Types.ObjectId,
-        required: true
-    },
     name : {
         type: String,
         required: true
@@ -22,7 +18,8 @@ const itemSchema = new mongoose.Schema({
         required: true
     },
     opentime: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     contact_number: {
         type: String,
@@ -41,20 +38,21 @@ const itemSchema = new mongoose.Schema({
         required: true
     },
     createAt: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     
     updateAt: {
-        type: Date
-    },
+        type: Date,
+        default: Date.now
+    }
 });
 
 itemSchema.set("toJSON", {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString();
-        delete returnedObject._id;
         delete returnedObject.__v;
     },
 });
 
-module.exports = mongoose.model("Item", itemSchema);
+module.exports = mongoose.model("Items", itemSchema);
