@@ -55,13 +55,13 @@ router.delete('/:itemId', async (req, res) => {
 });
 
 //UPDATE ITEMS
-router.patch('/:itemId', async (req, res) => {
+router.put('/:itemId', async (req, res) => {
     try{
-        Item.updatedItem = await Item.updateOne(
+        const updatedItem = await Item.updateOne(
             {_id: req.params.itemId}, 
             {$set: {name: req.body.name}
         });
-        res.json(updatedItem)
+        res.json(updatedItem);
     } catch(err) {
         res.json({message: err});
     }
