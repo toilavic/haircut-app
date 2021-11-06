@@ -2,9 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 const Rate = require('../models/rate');
+const verify = require('./verifyToken');
 
 //GET BACK ALL THE RATE
-router.get('/', async (req, res) => {
+router.get('/', verify, async (req, res) => {
     try {
         const rate = await Rate.find();
         res.json(rate);

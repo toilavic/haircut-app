@@ -11,6 +11,7 @@ const logger = require("./utils/logger");
 
 const itemsRoute = require("./controllers/items");
 const ratesRoute = require("./controllers/rates");
+const authRoute = require("./controllers/auth");
 
 logger.info("connecting to", config.MONGODB_URI);
 
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 
 app.use("/items", itemsRoute);
 app.use("/rates", ratesRoute);
+app.use("/auth", authRoute);
 
 
 app.use(middleware.unknownEndpoint); // handles unkown endpoints

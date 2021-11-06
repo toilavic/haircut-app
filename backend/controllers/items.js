@@ -42,7 +42,7 @@ router.get('/:itemId', async (req, res) => {
     } catch {
         res.json({message: err});
     }
-})
+});
 
 //DELETE ITEMS
 router.delete('/:itemId', async (req, res) => {
